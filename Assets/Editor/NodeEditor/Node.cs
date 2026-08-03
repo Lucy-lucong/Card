@@ -8,17 +8,21 @@ public class Node
     private bool isDragged;
     public ConnectionPoint inPoint;
     public ConnectionPoint outPoint;
+    public NodeEditor nodeEditor;
 
-    public Node(Vector2 pos) {
+    public Node(NodeEditor nodeEditor, Vector2 pos) {
+        this.nodeEditor = nodeEditor;
         rect = new Rect(pos.x,pos.y,160,40);
-        inPoint = new ConnectionPoint(this,ConnectPointTp.In);
-        outPoint = new ConnectionPoint(this,ConnectPointTp.Out);
+        inPoint = new ConnectionPoint(nodeEditor,this, ConnectPointTp.In);
+        outPoint = new ConnectionPoint(nodeEditor,this, ConnectPointTp.Out);
     }
 
     public void Draw() {
         GUI.Box(rect,"Node");
         inPoint.Draw();
         outPoint.Draw();
+
+       
     }
 
     public void ProcessDrag(Vector2 delta) {
