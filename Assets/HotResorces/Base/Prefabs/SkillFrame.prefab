@@ -642,6 +642,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8088503624353902028}
   - component: {fileID: 2399888981638001180}
+  - component: {fileID: 3436169543971823711}
   m_Layer: 5
   m_Name: SkillFrame
   m_TagString: Untagged
@@ -680,3 +681,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6933847291034203408}
   m_CullTransparentMesh: 1
+--- !u!114 &3436169543971823711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933847291034203408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7807a248dfc304d965c5856432b382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  img_skill: {fileID: 9072803904568761395}
+  img_bg: {fileID: 8948180974680660859}
+  skillName: {fileID: 9012466751744033028}
