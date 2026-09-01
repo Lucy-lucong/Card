@@ -1,7 +1,10 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using YooAsset;
 
 public class AppCtrl : MonoBehaviour
 {
+    private const string DefaultPackageName = "DefaultPackage";
     private static AppCtrl _Instance = null;
     public static AppCtrl Instance {
         get {
@@ -37,6 +40,7 @@ public class AppCtrl : MonoBehaviour
 
         _Instance = this;
         DontDestroyOnLoad(gameObject);
+        InitializeYooAsset();
 
         if (NotifyMgr == null)
         {
@@ -80,10 +84,28 @@ public class AppCtrl : MonoBehaviour
        
     }
 
-    private void Start()
+    private void InitializeYooAsset()
     {
+        YooAssets.Initialize();
+        YooAssets.CreatePackage(DefaultPackageName);
+    }
+
+    private async void Start()
+    {
+#if !UNITY_EDITOR
+        ResourcePackage defaultPackage = YooAssets.GetPackage(DefaultPackageName);
+        var initializeOperation = defaultPackage.InitializeAsync(new OfflinePlayModeParameters());
+        await UniTask.WaitUntil(() => initializeOperation.IsDone);
+
+        if (!string.IsNullOrEmpty(initializeOperation.Error))
+        {
+            Debug.LogError($"YooAsset 资源包初始化失败: {initializeOperation.Error}");
+            return;
+        }
+#endif
         UIMgr.Init();
-        
+        UIMgr.OpenUI<StartGameView>(UIList.UI["StartGameView"], null);
+
     }
 
     private void Update()

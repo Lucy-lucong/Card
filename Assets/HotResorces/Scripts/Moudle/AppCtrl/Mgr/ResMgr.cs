@@ -94,9 +94,9 @@ public sealed class ResMgr
         // 立即回调（编辑器模式下同步加载）
         call?.Invoke(asset);
 #else
-        // 运行时使用YooAsset加载
+        // 运行时使用 YooAsset 加载。YooAsset 3 不再为操作句柄提供 Task。
         AssetHandle assetHandle = package.LoadAssetAsync<T>(path);
-        await assetHandle.Task;
+        await UniTask.WaitUntil(() => assetHandle.IsDone);
         if (assetHandle.AssetObject == null)
         {
             Debug.LogError($"资源加载错误LoadAssetAsync:{path}");
@@ -118,7 +118,7 @@ public sealed class ResMgr
     public async UniTask UnloadAsset()
     {
         //因为GameObject销毁是在本帧的最后阶段才会消耗，所以要等待帧结束
-        await UniTask.WaitForEndOfFrame();
+        await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate);
         _removeHandle.Clear();
         foreach (string path in _autoRefData.Keys)
         {
@@ -153,7 +153,7 @@ public sealed class ResMgr
         }
 #if !UNITY_EDITOR
         UnloadUnusedAssetsOperation unloadUnused = package.UnloadUnusedAssetsAsync();
-        await unloadUnused.Task;
+        await UniTask.WaitUntil(() => unloadUnused.IsDone);
 #endif
     }
 
@@ -172,11 +172,12 @@ public sealed class ResMgr
         SceneHandle sceneHandle = package.LoadSceneAsync(path, mode, p_mode, suspendLoad);
 
         // 等待加载完成（注意：加载完成不代表切换激活，suspendLoad为true时需手动激活）
-        await sceneHandle.Task;
+        await UniTask.WaitUntil(() => sceneHandle.IsDone);
 
-        if (sceneHandle.Status != EOperationStatus.Succeed)
+        if (!sceneHandle.SceneObject.IsValid())
         {
             Debug.LogError($"场景加载失败: {path}");
+            return;
         }
 
         // 您可以在这里将sceneHandle存入一个专门的字典进行管理，类似_autoRefData

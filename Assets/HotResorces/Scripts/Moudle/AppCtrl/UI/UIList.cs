@@ -13,5 +13,6 @@ public static class UIList
         ["MaitreyaBuddha_FreePanel"] = new UIData("Assets/HotRes/UI/SlotController/Prefabs/MaitreyaBuddha_FreePanel.prefab", UIType.UI, false),
         ["HappyBuddhaFreeSpinStartView"] = new UIData("Assets/HotRes/UI/SlotController/Prefabs/HappyBuddhaFreeSpinStartView.prefab", UIType.UI, false),
         ["HappyBuddhaFreeSpinSettleView"] = new UIData("Assets/HotRes/UI/SlotController/Prefabs/HappyBuddhaFreeSpinSettleView.prefab", UIType.UI, false),
+        ["StartGameView"] = new UIData("Assets/HotResorces/Base/Prefabs/StartGame/StartGameView.prefab", UIType.UI, false),
     };
 }

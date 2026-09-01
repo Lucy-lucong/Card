@@ -54,6 +54,7 @@ public sealed class UIMgr
 
         ui_parents["UI"] = root_canvas.transform.GetChild(0).Find("UI");
         ui_parents["Tip"] = root_canvas.transform.GetChild(0).Find("Tip");
+
     }
 
 

@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 8765975899981081165}
   - component: {fileID: 3375275759483167525}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1457,6 +1457,7 @@ GameObject:
   - component: {fileID: 3886751960392493727}
   - component: {fileID: 2945086999832501437}
   - component: {fileID: 8665158632062137816}
+  - component: {fileID: 6827561846937120451}
   m_Layer: 5
   m_Name: StartGameView
   m_TagString: Untagged
@@ -1524,6 +1525,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6827561846937120451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7096656713001261354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2ee5a3681f46f0964a706b2a1ef9c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startGameButton: {fileID: 2761679800802089884}
+  loadGameButton: {fileID: 0}
+  settingButton: {fileID: 2451761434787086225}
+  quitButton: {fileID: 1569513632036535249}
 --- !u!1 &7114592215088557926
 GameObject:
   m_ObjectHideFlags: 0
