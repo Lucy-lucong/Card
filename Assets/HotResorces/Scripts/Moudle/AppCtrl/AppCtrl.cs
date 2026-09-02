@@ -27,6 +27,8 @@ public class AppCtrl : MonoBehaviour
     public DataMgr DataMgr { get; private set; }
     
     public CacheMgr CacheMgr { get; private set; }
+
+    public MapMgr MapMgr;
     private AppCtrl() //????????? ??????????????
     { 
     }
@@ -80,7 +82,11 @@ public class AppCtrl : MonoBehaviour
             DataMgr = new DataMgr();
             DataMgr.Init();
         }
-
+        if (MapMgr == null)
+        {
+            MapMgr = new MapMgr();
+            MapMgr.Init();
+        }
        
     }
 

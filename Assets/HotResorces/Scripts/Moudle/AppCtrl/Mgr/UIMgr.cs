@@ -152,6 +152,15 @@ public sealed class UIMgr
 
 
     /// <summary>
+    /// 关闭指定 UI。
+    /// </summary>
+    /// <param name="ub">要关闭的 UI 实例</param>
+    public void Close(UIBase ub)
+    {
+        CloseUI<UIBase>(ub);
+    }
+
+    /// <summary>
     /// 关闭 UI
     /// </summary>
     /// <typeparam name="T">UI 类型</typeparam>

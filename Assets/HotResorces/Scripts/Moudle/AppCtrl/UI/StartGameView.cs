@@ -30,6 +30,8 @@ public sealed class StartGameView : UIBase
     private void OnStartGameClicked()
     {
         Debug.Log("[StartGameView] Start Game clicked.");
+        AppCtrl.Instance.UIMgr.OpenUI<MapView>(UIList.UI["MapView"],null);
+        Cancel();
     }
 
     private void OnLoadGameClicked()

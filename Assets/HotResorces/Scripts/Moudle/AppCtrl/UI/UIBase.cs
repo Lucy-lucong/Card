@@ -40,4 +40,9 @@ public abstract class UIBase : MonoBehaviour
     /// </summary>
     /// <param name="hasFocus">true=获得焦点，false=失去焦点</param>
     public virtual void OnFocus(bool hasFocus) { }
+
+    public virtual void Cancel()
+    {
+        AppCtrl.Instance.UIMgr.Close(this);
+    }
 }
